@@ -4,10 +4,10 @@
     "displayName": "Organization Chart by MAQ Software",
     "guid": "organizationChartDD06406DD55C47CCBB412EFE9A671D14",
     "visualClassName": "Visual",
-    "version": "3.0.0.0",
+    "version": "3.1.0",
     "description": "Organization Chart visualizes hierarchical data in tree form which can also show images along with required details",
-    "supportUrl": "https://github.com/maqsoftware/PowerBI-visuals/issues",
-    "gitHubUrl": "https://github.com/maqsoftware/PowerBI-visuals"
+    "supportUrl": "https://github.com/maqsoftware/OrganizationChart/issues",
+    "gitHubUrl": "https://github.com/maqsoftware/OrganizationChart"
   },
   "apiVersion": "2.5.0",
   "author": {

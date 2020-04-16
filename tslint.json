@@ -5,7 +5,6 @@
     ],
     "rules": {
     "no-internal-module": false,
-    "no-namespace": false,
-    "max-func-body-length": [true, 298]
+    "no-namespace": false
     }
-   }
+}
