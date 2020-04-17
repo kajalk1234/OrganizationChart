@@ -32,9 +32,9 @@ module powerbi.extensibility.visual {
     public links: Links = new Links();
     public card: Card = new Card();
     public legend: Legend = new Legend();
-    public colorSelector : Colorselector = new Colorselector();
-    public labelSettings: Labelsettings = new Labelsettings();
-    public subLabelSettings: Sublabelsettings = new Sublabelsettings();
+    public colorSelector : ColorSelector = new ColorSelector();
+    public labelSettings: LabelSettings = new LabelSettings();
+    public subLabelSettings: SublabelSettings = new SublabelSettings();
   }
 
   export class Links {
@@ -61,17 +61,17 @@ module powerbi.extensibility.visual {
     public fontSize : number = 12;
   }
 
-  export class Colorselector {
+  export class ColorSelector {
     public fill: string = '#FFF';
   }
 
-  export class Labelsettings {
+  export class LabelSettings {
     public fontSize: number = 12;
     public fontFamily: string = 'Segoe UI';
     public textFill: string = '#FFF';
   }
 
-  export class Sublabelsettings {
+  export class SublabelSettings {
     public fontSize: number = 12;
     public fontFamily: string = 'Segoe UI';
     public textFill: string = '#FFF';
