@@ -15,7 +15,7 @@ module powerbi.extensibility.visual {
     export const rootDiv: string = 'rootDiv';
     export const div: string = 'div';
     export const errorMessage: string = 'errorMessage';
-    export const errorText: string = 'Please add image data in valid format';
+    export const errorText: string = 'Please add image data in valid format (Supported Format: Base 64)';
     export const center: string = 'center';
     export const path: string = 'path';
     export const nodeClass: string = 'node';

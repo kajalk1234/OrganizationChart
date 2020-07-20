@@ -116,17 +116,14 @@ module powerbi.extensibility.visual {
     function imageValidator(val) {
         let imageValidator: RegExp;
         let anotherImageValidator: RegExp;
-        let httpImageValidator: RegExp;
-        anotherImageValidator = new RegExp("data:image\/([a-zA-Z]*)[+]([a-zA-Z]*);base64,([^\"]*)");
-        imageValidator = new RegExp("data:image\/([a-zA-Z]*);base64,([^\"]*)");
-        httpImageValidator = new RegExp("(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg|)");
         let imgValidate: any;
         let anotherImgValidate: any;
-        let httpImgValidate: any;
+        anotherImageValidator = new RegExp("data:image\/([a-zA-Z]*)[+]([a-zA-Z]*);base64,([^\"]*)");
+        imageValidator = new RegExp("data:image\/([a-zA-Z]*);base64,([^\"]*)");        
         imgValidate = imageValidator.test(String(val));
         anotherImgValidate = anotherImageValidator.test(String(val));
-        httpImgValidate = httpImageValidator.test(val);
-        if (!imgValidate && !anotherImgValidate && !httpImgValidate) {
+        
+        if (!imgValidate && !anotherImgValidate) {
             displayErrorMessage(errorText);
             this.isImageDataPresent = true;
             return false;
@@ -783,6 +780,7 @@ module powerbi.extensibility.visual {
             dataPoint.selectionId1 = getSelectionIDForCardColor(groupIndex !== null ? row[groupIndex].toString() : '');
             dataPoint.color = dataPoint.group.length > zeroVal ? host.colorPalette.getColor(dataPoint.group).value : cardColour;
             dataPoint.imageData = (row[imageDataIndex] !== null && row[imageDataIndex] !== undefined) ? row[imageDataIndex] : '';
+            if(dataPoint.imageData) {imageValidator(dataPoint.imageData);}
             if (idIndex !== null) {
                 dataPoint.tooltipInfo.push(<VisualTooltipDataItem>{ 
                     displayName: table.columns[idIndex].displayName, value: dataPoint.selfId ? dataPoint.selfId.toString() : '' 
@@ -1099,24 +1097,6 @@ module powerbi.extensibility.visual {
         }
 
         /**
-         * Method to check if image data is present or not
-         */
-        public checkIfImageDataIsPresent() {
-            if (Object.keys(this.viewModel.nodeList).length === 0) {
-                displayErrorMessage(inappropriateColumnData);
-                return;
-            }
-            this.isImageDataPresent = false;
-            if (this.viewModel.nodeList[Number(Object.keys(this.viewModel.nodeList))].imageData) {
-                this.isImageDataPresent = imageValidator(this.viewModel
-                    .nodeList[Number(Object.keys(this.viewModel.nodeList))].imageData);
-                if (this.isImageDataPresent) {
-                    return;
-                }
-            }
-        }
-
-        /**
          * Method to implement scroll arrow for top center and bottom center
          * 
          * @param legendPosition        - contains legend position
@@ -1175,7 +1155,6 @@ module powerbi.extensibility.visual {
                 this.isGroupPresent = false;
                 this.isSublabelPresent = false;
                 this.viewModel = visualTransform(options, self.host, thisObject, cardColour);
-                this.checkIfImageDataIsPresent();
                 this.viewport = options.viewport;
                 // flag to determine if tree data needs to be updated according to roleCount i.e new data added
                 let renderNewFlag: boolean = true, tempIndex: number;
